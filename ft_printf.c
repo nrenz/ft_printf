@@ -6,12 +6,12 @@
 /*   By: nrenz <nrenz@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:58:48 by nrenz             #+#    #+#             */
-/*   Updated: 2022/02/02 16:33:52 by nrenz            ###   ########.fr       */
+/*   Updated: 2022/02/04 16:21:14 by nrenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <stdio.h>
+// #include <stdarg.h>
+// #include <stdio.h>
 #include "ft_printf.h"
 
 int	ft_format(va_list args, const char format)
@@ -22,13 +22,13 @@ int	ft_format(va_list args, const char format)
 	if (format == 'c')
 		print_length += ft_print_char(va_arg(args, int));
 	else if (format == 's')
-		print_length += ft_print_str(va_arg(args, char));
+		print_length += ft_print_str(va_arg(args, char *));
 	else if (format == 'p')
 		print_length += ft_print_pnt(va_arg(args, unsigned long long));
 	else if (format == 'd' || format == 'i')
 		print_length += ft_print_dori(va_arg(args, int));
 	else if (format == 'u')
-		print_length += ft_print_unsnbr(va_arg(args, unsigned int));
+		print_length += ft_print_unsnbr(va_arg(args, long long));
 	if (format == 'x' || format == 'X')
 		print_length += ft_print_hex(va_arg(args, unsigned int), format);
 	else if (format == '%')
@@ -60,22 +60,13 @@ int	ft_printf(const char *str, ...)
 	return (print_length);
 }
 
-// int	main(void)
+// int main()
 // {
-// 	int	number;
-
-// 	number = 700;
-// 	ft_printf("%x\n", number);
+// 	int d = 200;
+// 	char str[20] = "hallo, welt";
+// 	unsigned int u = 0 - 1;
+// 	int *ptr = &d;
+// 	ft_printf("d = %d\nstr = %s\nu = %u\nptr = %p\nx = %x\nX = %X\n",
+// 	 d, str, u, ptr, d, d);
 // 	return (0);
 // }
-
-int main()
-{
-	int d = 200;
-	char str[20] = "hallo, welt";
-	unsigned int u = 0 - 1;
-	int *ptr = &d;
-	ft_printf("d = %d\nstr = %s\nu = %u\nptr = %p\nx = %x\nX = %X\n",
-	 d, str, u, ptr, d, d);
-	return (0);
-}

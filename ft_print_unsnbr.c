@@ -6,22 +6,23 @@
 /*   By: nrenz <nrenz@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:40:52 by nrenz             #+#    #+#             */
-/*   Updated: 2022/02/02 14:10:15 by nrenz            ###   ########.fr       */
+/*   Updated: 2022/02/04 16:26:36 by nrenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
+#include "ft_printf.h"
+#include <limits.h>
 
-ssize_t	ft_print_unsnbr(long int nbr)
+int	ft_print_unsnbr(unsigned int nbr)
 {
-	write(1, &nbr, 1);
-	return (nbr);
-}
+	char	*res;
+	int		len;
 
-int	main(void)
-{
-	long int	nbr = 0 - 1;
-	ft_print_unsnbr(nbr);
-	return (0);
+	res = ft_unsigned_itoa(nbr);
+	if (!res)
+		return (0);
+	ft_putstr_fd(res, 1);
+	len = ft_strlen(res);
+	free(res);
+	return (len);
 }

@@ -6,26 +6,17 @@
 /*   By: nrenz <nrenz@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 11:40:47 by nrenz             #+#    #+#             */
-/*   Updated: 2022/02/02 17:04:00 by nrenz            ###   ########.fr       */
+/*   Updated: 2022/02/04 16:12:27 by nrenz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "ft_printf.h"
 
-ssize_t	ft_print_pnt(void *pnt)
+int	ft_print_pnt(unsigned long long nbr)
 {
-	ssize_t	*b;
+	int	len;
 
-	b = pnt;
-	print_hex(&b);
-	return (b);
-}
-
-int	main(void)
-{
-	int	pnt;
-
-	pnt = 0;
-	ft_print_pnt(pnt);
-	return (0);
+	len = write(1, "0x", 2);
+	len += ft_print_hex(nbr, 'x');
+	return (len);
 }
